@@ -22,7 +22,8 @@ import com.ila.hr.repository.EmployeeRep;
 
 @Service
 public class EmployeeService {
-    Logger log = LoggerFactory.getLogger(EmployeeService.class);
+    Logger log = LoggerFactory.getLogger(EmployeeValidator.class);
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -31,6 +32,7 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeValidator validator;
+
     @Autowired
     private EmployeeRep rep;
 

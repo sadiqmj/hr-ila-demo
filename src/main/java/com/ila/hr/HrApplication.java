@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @ConfigurationPropertiesScan
 public class HrApplication {
+
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();

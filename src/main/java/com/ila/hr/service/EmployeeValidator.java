@@ -33,7 +33,7 @@ public class EmployeeValidator {
         return new ResBuilder().success().build();
     }
 
-    private boolean employeeEmailExists(String email) {
+    public boolean employeeEmailExists(String email) {
         if (rep.employeeEmailExists(email)) {
             log.warn("employee email {} is duplicate", email);
             return true;
@@ -41,7 +41,7 @@ public class EmployeeValidator {
         return false;
     }
 
-    private boolean employeeMobileExists(String mobile) {
+    public boolean employeeMobileExists(String mobile) {
         if (rep.employeeMobileExists(mobile)) {
             log.warn("employee mobile {} is duplicate", mobile);
             return true;
@@ -49,7 +49,7 @@ public class EmployeeValidator {
         return false;
     }
 
-    private boolean employeeCprExists(String cpr) {
+    public boolean employeeCprExists(String cpr) {
         if (rep.employeeCprExists(cpr)) {
             log.warn("employee CPR {} is duplicate", cpr);
             return true;

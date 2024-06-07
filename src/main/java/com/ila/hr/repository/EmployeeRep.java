@@ -20,11 +20,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ila.hr.common.CustomDbConfig;
 import com.ila.hr.model.Employee;
-import com.ila.hr.service.EmployeeService;
+import com.ila.hr.service.EmployeeValidator;
 
 @Service
 public class EmployeeRep {
-    Logger log = LoggerFactory.getLogger(EmployeeService.class);
+    Logger log = LoggerFactory.getLogger(EmployeeValidator.class);
 
     // todo generate random unique query
     // private String FILE_NAME() = "/home/user01/lab/ila/hr/hr.db";
