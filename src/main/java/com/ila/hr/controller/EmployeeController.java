@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ila.hr.common.IRes;
 import com.ila.hr.dto.EmployeeCreateDto;
 import com.ila.hr.service.EmployeeService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Pattern;
 
 @RestController
 public class EmployeeController {
@@ -37,7 +39,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/cpr/{cpr}")
-    public ResponseEntity<Object> getByRefNo(@PathVariable String cpr) {
+    public ResponseEntity<Object> getByRefNo(
+            @PathVariable @Pattern(regexp = "(^$|[0-9]{9})", message = "cpr must be 9 digits") String cpr) {
         var res = service.getByCpr(cpr);
         if (res.getSuccess())
             return ResponseEntity.ok(res.getContent());
@@ -47,8 +50,8 @@ public class EmployeeController {
     @GetMapping("/employees")
     public ResponseEntity<Object> getList(
             @RequestParam(defaultValue = "") String name,
-            @RequestParam(defaultValue = "0.0") double fromSalary,
-            @RequestParam(defaultValue = "0.0") double toSalary) {
+            @RequestParam(defaultValue = "0.0") @DecimalMin(value = "0.0", message = "salaray must be greater than 0") @DecimalMax(value = "20000.0", message = "salaray must be greater than 20,000") double fromSalary,
+            @RequestParam(defaultValue = "0.0") @DecimalMin(value = "0.0", message = "salaray must be greater than 0") @DecimalMax(value = "20000.0", message = "salaray must be greater than 20,000") double toSalary) {
         var res = service.getList(name, fromSalary, toSalary);
         if (res.getSuccess())
             return ResponseEntity.ok(res.getContent());
